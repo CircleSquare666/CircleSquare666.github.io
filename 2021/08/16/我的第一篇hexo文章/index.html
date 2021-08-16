@@ -33,10 +33,12 @@
         <hr>
     </div>
     <div class="post-content">
-        <h2 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h2><p>内容</p>
-<hr>
-<h2 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2>
+        <h2 id="问题截图"><a href="#问题截图" class="headerlink" title="问题截图"></a>问题截图</h2><p><img src="https://img-blog.csdnimg.cn/fb6951715401412ab9d6761b175e0575.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMyNzQyNTcz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<h2 id="报错代码"><a href="#报错代码" class="headerlink" title="报错代码"></a>报错代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">运行 &#x27;go build go.go&#x27; 时出错:</span><br><span class="line">Cannot run program &quot;C:\Users\YZ\AppData\Local\Temp\___go_build_go_go.exe&quot; (in directory &quot;C:\Users\YZ\Desktop\algorithmRealize&quot;): CreateProcess error=216, 该版本的 %1 与你运行的 Windows 版本不兼容。请查看计算机的系统信息，然后联系软件发布者。</span><br></pre></td></tr></table></figure>
+<h2 id="问题原因"><a href="#问题原因" class="headerlink" title="问题原因"></a>问题原因</h2><p>出现这个问题是由于粗心大意造成的，在go语言编译的时候，如果只是单单编译一个文件的话，<code>package</code>必须是<code>main</code>，意味着是可以单独编译的。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>使用<code>package main</code>就好了。</p>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p><img src="https://img-blog.csdnimg.cn/c774204bf092462db62fec88c257100b.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMyNzQyNTcz,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+
     </div>
 
     
