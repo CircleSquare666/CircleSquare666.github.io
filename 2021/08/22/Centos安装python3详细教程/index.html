@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="google-site-verification" content="TZE0rZyIqLl10trYu3BWBWa1Vmz6HFwhb2OcNEK4u-s" />
+     <link rel="shortcut icon" href= /img/favicon.ico >
+    <title>
+        Circle Square的Hexo博客
+    </title>
+    <meta name="description" content= 嘿，我是袁政～这是我的Hexo博客，欢迎访问！ >
+    <meta name="keywords" content= Blog,Hexo,袁政,CircleSquare >
+    
+<link rel="stylesheet" href="/libs/highlight/styles/monokai-sublime.css">
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body id="bodyx">
+    <div class="hd posts">
+    <a href="/index.html"><i class="fa fa-home
+ replay-btn" aria-hidden="true"></i></a>
+    <div class="post-title">
+        <p>
+            Centos安装python3详细教程
+        </p>
+        <hr>
+    </div>
+    <div class="post-content">
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Centos%E5%AE%89%E8%A3%85python3%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B"><span class="toc-text">Centos安装python3详细教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E6%9F%A5%E7%9C%8B%E7%B3%BB%E7%BB%9Fpython%E7%9A%84%E4%BD%8D%E7%BD%AE%E5%9C%A8%E5%93%AA%E5%84%BF"><span class="toc-text">先查看系统python的位置在哪儿</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDpython3%E7%9A%84%E5%8C%85%E4%B9%8B%E5%89%8D%EF%BC%8C%E8%A6%81%E5%85%88%E5%AE%89%E8%A3%85%E7%9B%B8%E5%85%B3%E7%9A%84%E4%BE%9D%E8%B5%96%E5%8C%85%EF%BC%8C%E7%94%A8%E4%BA%8E%E4%B8%8B%E8%BD%BD%E7%BC%96%E8%AF%91python3%EF%BC%9A"><span class="toc-text">下载python3的包之前，要先安装相关的依赖包，用于下载编译python3：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E7%9A%84centos7%E6%98%AF%E6%B2%A1%E6%9C%89%E5%AE%89%E8%A3%85pip%EF%BC%8C%E5%85%88%E6%B7%BB%E5%8A%A0epel%E6%89%A9%E5%B1%95%E6%BA%90"><span class="toc-text">默认的centos7是没有安装pip，先添加epel扩展源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85pip"><span class="toc-text">安装pip</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8pip%E8%A3%85wget"><span class="toc-text">用pip装wget</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8wget%E4%B8%8B%E8%BD%BDpython3%E7%9A%84%E6%BA%90%E7%A0%81%E5%8C%85%EF%BC%8C%E6%88%96%E8%80%85%E8%87%AA%E5%B7%B1%E5%85%88%E4%B8%8B%E8%BD%BD%E5%A5%BD%EF%BC%8C%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%86%8D%E5%AE%89%E8%A3%85%EF%BC%8C%E5%A6%82%E6%9E%9C%E7%BD%91%E7%BB%9C%E5%BF%AB%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85"><span class="toc-text">用wget下载python3的源码包，或者自己先下载好，上传到服务器再安装，如果网络快可以直接安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91python3%E6%BA%90%E7%A0%81%E5%8C%85%EF%BC%8C%E8%A7%A3%E5%8E%8B"><span class="toc-text">编译python3源码包，解压</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%85%A5%E8%A7%A3%E5%8E%8B%E5%90%8E%E7%9A%84%E7%9B%AE%E5%BD%95%EF%BC%8C%E4%BE%9D%E6%AC%A1%E6%89%A7%E8%A1%8C%E4%B8%8B%E9%9D%A2%E5%91%BD%E4%BB%A4%E8%BF%9B%E8%A1%8C%E6%89%8B%E5%8A%A8%E7%BC%96%E8%AF%91"><span class="toc-text">进入解压后的目录，依次执行下面命令进行手动编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96zlib%E3%80%81zlib-deve"><span class="toc-text">安装依赖zlib、zlib-deve</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%90%8E%E6%B2%A1%E6%8F%90%E7%A4%BA%E5%87%BA%E9%94%99%EF%BC%8C%E5%B0%B1%E4%BB%A3%E8%A1%A8%E6%AD%A3%E7%A1%AE%E5%AE%89%E8%A3%85%E4%BA%86%EF%BC%8C%E5%9C%A8-usr-local-%E7%9B%AE%E5%BD%95%E4%B8%8B%E5%B0%B1%E4%BC%9A%E6%9C%89python3%E7%9B%AE%E5%BD%95"><span class="toc-text">最后没提示出错，就代表正确安装了，在&#x2F;usr&#x2F;local&#x2F;目录下就会有python3目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0%E8%BD%AF%E9%93%BE%E6%8E%A5%EF%BC%8C%E5%B0%86%E5%8E%9F%E6%9D%A5%E7%9A%84%E9%93%BE%E6%8E%A5%E5%A4%87%E4%BB%BD"><span class="toc-text">添加软链接，将原来的链接备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%BB%E5%8A%A0python3%E7%9A%84%E8%BD%AF%E9%93%BE%E6%8E%A5"><span class="toc-text">添加python3的软链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85%E6%88%90%E5%8A%9F%E4%BA%86"><span class="toc-text">测试是否安装成功了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9yum%E9%85%8D%E7%BD%AE%EF%BC%8C%E5%9B%A0%E4%B8%BA%E5%85%B6%E8%A6%81%E7%94%A8%E5%88%B0python2%E6%89%8D%E8%83%BD%E6%89%A7%E8%A1%8C%EF%BC%8C%E5%90%A6%E5%88%99%E4%BC%9A%E5%AF%BC%E8%87%B4yum%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8"><span class="toc-text">更改yum配置，因为其要用到python2才能执行，否则会导致yum不能正常使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E7%AC%AC%E4%B8%80%E8%A1%8C%E7%9A%84-usr-bin-python-%E4%BF%AE%E6%94%B9%E4%B8%BA%E5%A6%82%E4%B8%8B"><span class="toc-text">把第一行的#! &#x2F;usr&#x2F;bin&#x2F;python 修改为如下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%98%E6%9C%89%E4%B8%80%E4%B8%AA%E5%9C%B0%E6%96%B9%E4%B9%9F%E9%9C%80%E8%A6%81%E4%BF%AE%E6%94%B9"><span class="toc-text">还有一个地方也需要修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%8A%E7%AC%AC%E4%B8%80%E8%A1%8C%E7%9A%84-usr-bin-python-%E4%BF%AE%E6%94%B9%E5%A6%82%E4%B8%8B"><span class="toc-text">把第一行的#! &#x2F;usr&#x2F;bin&#x2F;python 修改如下</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8python2"><span class="toc-text">启动python2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8python3"><span class="toc-text">启动python3</span></a></li></ol></li></ol>
+        <h1 id="Centos安装python3详细教程"><a href="#Centos安装python3详细教程" class="headerlink" title="Centos安装python3详细教程"></a>Centos安装python3详细教程</h1><p>centos7自带版本是python2.7</p>
+<p>如果要用的3.0以上的版本需要手动安装，下载地址：<a target="_blank" rel="noopener" href="https://www.python.org/ftp/python/">https://www.python.org/ftp/python/</a></p>
+<h2 id="先查看系统python的位置在哪儿"><a href="#先查看系统python的位置在哪儿" class="headerlink" title="先查看系统python的位置在哪儿"></a>先查看系统python的位置在哪儿</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whereis python</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20201120224628641.png" alt="img"></p>
+<p>python2.7默认安装是在 /usr/bin目录中，切换到/usr/bin/</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/bin/</span><br><span class="line"></span><br><span class="line">ll python*</span><br></pre></td></tr></table></figure>
+
+<p>从下面的图中我们可以看到，python指向的是python2，python2指向的是python2.7，因此我们可以装个python3，然后删除python链接，将python3指向python3，然后python2指向python2.7，那么两个版本的python就能共存了。</p>
+<p><img src="https://img-blog.csdnimg.cn/20201120225240754.png" alt="img"></p>
+<h2 id="下载python3的包之前，要先安装相关的依赖包，用于下载编译python3："><a href="#下载python3的包之前，要先安装相关的依赖包，用于下载编译python3：" class="headerlink" title="下载python3的包之前，要先安装相关的依赖包，用于下载编译python3："></a>下载python3的包之前，要先安装相关的依赖包，用于下载编译python3：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make</span><br></pre></td></tr></table></figure>
+
+<p>运行了以上命令以后，就安装了编译python3所用到的相关依赖</p>
+<h2 id="默认的centos7是没有安装pip，先添加epel扩展源"><a href="#默认的centos7是没有安装pip，先添加epel扩展源" class="headerlink" title="默认的centos7是没有安装pip，先添加epel扩展源"></a>默认的centos7是没有安装pip，先添加epel扩展源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install epel-release</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装pip"><a href="#安装pip" class="headerlink" title="安装pip"></a>安装pip</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install python-pip</span><br></pre></td></tr></table></figure>
+
+<h2 id="用pip装wget"><a href="#用pip装wget" class="headerlink" title="用pip装wget"></a>用pip装wget</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install wget</span><br></pre></td></tr></table></figure>
+
+<h2 id="用wget下载python3的源码包，或者自己先下载好，上传到服务器再安装，如果网络快可以直接安装"><a href="#用wget下载python3的源码包，或者自己先下载好，上传到服务器再安装，如果网络快可以直接安装" class="headerlink" title="用wget下载python3的源码包，或者自己先下载好，上传到服务器再安装，如果网络快可以直接安装"></a>用wget下载python3的源码包，或者自己先下载好，上传到服务器再安装，如果网络快可以直接安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tar.xz</span><br></pre></td></tr></table></figure>
+
+<h2 id="编译python3源码包，解压"><a href="#编译python3源码包，解压" class="headerlink" title="编译python3源码包，解压"></a>编译python3源码包，解压</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xz -d Python-3.9.6.tar.xz</span><br><span class="line">tar -xf Python-3.9.6.tar</span><br></pre></td></tr></table></figure>
+
+<h2 id="进入解压后的目录，依次执行下面命令进行手动编译"><a href="#进入解压后的目录，依次执行下面命令进行手动编译" class="headerlink" title="进入解压后的目录，依次执行下面命令进行手动编译"></a>进入解压后的目录，依次执行下面命令进行手动编译</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> Python-3.9.6</span><br><span class="line"></span><br><span class="line">./configure prefix=/usr/<span class="built_in">local</span>/python3</span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装依赖zlib、zlib-deve"><a href="#安装依赖zlib、zlib-deve" class="headerlink" title="安装依赖zlib、zlib-deve"></a>安装依赖zlib、zlib-deve</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib zlib</span><br><span class="line">yum install zlib zlib-devel</span><br></pre></td></tr></table></figure>
+
+<h2 id="最后没提示出错，就代表正确安装了，在-usr-local-目录下就会有python3目录"><a href="#最后没提示出错，就代表正确安装了，在-usr-local-目录下就会有python3目录" class="headerlink" title="最后没提示出错，就代表正确安装了，在/usr/local/目录下就会有python3目录"></a>最后没提示出错，就代表正确安装了，在/usr/local/目录下就会有python3目录</h2><h2 id="添加软链接，将原来的链接备份"><a href="#添加软链接，将原来的链接备份" class="headerlink" title="添加软链接，将原来的链接备份"></a>添加软链接，将原来的链接备份</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv /usr/bin/python /usr/bin/python.bak</span><br></pre></td></tr></table></figure>
+
+<h2 id="添加python3的软链接"><a href="#添加python3的软链接" class="headerlink" title="添加python3的软链接"></a>添加python3的软链接</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/<span class="built_in">local</span>/python3/bin/python3.9 /usr/bin/python3</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试是否安装成功了"><a href="#测试是否安装成功了" class="headerlink" title="测试是否安装成功了"></a>测试是否安装成功了</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -V</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/1f5d6cf5102e45eb9d802cee48381ec4.png" alt="在这里插入图片描述"></p>
+<h2 id="更改yum配置，因为其要用到python2才能执行，否则会导致yum不能正常使用"><a href="#更改yum配置，因为其要用到python2才能执行，否则会导致yum不能正常使用" class="headerlink" title="更改yum配置，因为其要用到python2才能执行，否则会导致yum不能正常使用"></a>更改yum配置，因为其要用到python2才能执行，否则会导致yum不能正常使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/bin/yum</span><br></pre></td></tr></table></figure>
+
+<h2 id="把第一行的-usr-bin-python-修改为如下"><a href="#把第一行的-usr-bin-python-修改为如下" class="headerlink" title="把第一行的#! /usr/bin/python 修改为如下"></a>把第一行的#! /usr/bin/python 修改为如下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /usr/bin/python2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="还有一个地方也需要修改"><a href="#还有一个地方也需要修改" class="headerlink" title="还有一个地方也需要修改"></a>还有一个地方也需要修改</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/libexec/urlgrabber-ext-down</span><br></pre></td></tr></table></figure>
+
+<h2 id="把第一行的-usr-bin-python-修改如下"><a href="#把第一行的-usr-bin-python-修改如下" class="headerlink" title="把第一行的#! /usr/bin/python 修改如下"></a>把第一行的#! /usr/bin/python 修改如下</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#! /usr/bin/python2</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="启动python2"><a href="#启动python2" class="headerlink" title="启动python2"></a>启动python2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/b0050ee299304b4dbe8fd433eb9dca11.png" alt="在这里插入图片描述"></p>
+<h2 id="启动python3"><a href="#启动python3" class="headerlink" title="启动python3"></a>启动python3</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3</span><br></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/a6861dd8a9d746f6b1a7450f8d9ec865.png" alt="在这里插入图片描述"></p>
+
+    </div>
+
+    
+        <hr class="fhr">
+        <div id="vcomments"></div>
+    
+</div>
+    <div class="footer" id="footer">
+    <p><h4>版权所有 © 2020 | 作者: CircleSquare | 主题 By <a class="theme-author" target="_blank" rel="noopener" href="https://github.com/Xunzhuo/hexo-theme-coder" style="font-size:14px; color: #969696">Coder</a></h4>
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+        <span id="busuanzi_container_site_pv">本站浏览总访问量: <span id="busuanzi_value_site_pv"></span></span>
+        <span class="post-meta-divider">|</span>
+        <span id="busuanzi_container_site_uv">本站访问人数: <span id="busuanzi_value_site_uv"></span></span>
+    
+    <label class="el-switch el-switch-blue el-switch-sm" style="vertical-align: sub;">
+        <input type="checkbox" name="switch" id="update_style">
+        <span class="el-switch-style"></span>
+    </label>
+
+    <!--         <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");
+    document.write(unescape("%3Cspan id='cnzz_stat_icon_1278548644'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "v1.cnzz.com/stat.php%3Fid%3D1278548644%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script> -->
+</p>
+</div>
+
+<input type="hidden" id="web_style" value="black">
+<input type="hidden" id="valine_appid" value="NOsswOncKgc8HOxqo9oxIWlX-gzGzoHsz">
+<input type="hidden" id="valine_appKey" value="z1FihjWEbS8uIfUQdmCtK7zz">
+
+<script src="/libs/jquery.min.js"></script>
+
+
+<script src="/libs/highlight/highlight.pack.js"></script>
+
+<script src='//cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js'></script>
+
+<script src="/js/js.js"></script>
+
+<style type="text/css">
+.v * {
+color: #698fca;
+}
+.v .vlist .vcard .vhead .vsys {
+color: #3a3e4a;
+}
+.v .vlist .vcard .vh .vmeta .vat {
+color: #638fd5;
+}
+.v .vlist .vcard .vhead .vnick {
+color: #6ba1ff;
+}
+.v a {
+color: #8696b1;
+}
+.v .vlist .vcard .vhead .vnick:hover {
+color: #669bfc;
+}
+</style>
+    <script type="text/javascript" color="173,174,173" opacity='1' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+</body>
+</html>
